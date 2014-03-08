@@ -93,7 +93,21 @@ static struct wake_lock mmc_removal_work_wake_lock;
 
 extern unsigned int get_tamper_sf(void);
 
+<<<<<<< HEAD
 bool use_spi_crc = 1;
+=======
+extern int powersave_enabled;
+extern bool ac_status;
+
+enum {
+    PP_NORMAL = 0,
+    PP_POWERSAVE = 1,
+    PP_EXTREMELY_POWERSAVE = 2,
+    PP_PERFORMANCE = 4,
+};
+
+bool use_spi_crc = 0;
+>>>>>>> 50be5be... disable CRC check
 module_param(use_spi_crc, bool, 0);
 
 #ifdef CONFIG_MMC_UNSAFE_RESUME

@@ -1,0 +1,5 @@
+#!/bin/bash          
+
+echo
+echo " Set to arm at 375, for about 20 to 40 minutes "
+make ARCH=arm CROSS_COMPILE=~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.08/bin/arm-cortex_a15-linux-gnueabihf- -j4

@@ -280,27 +280,6 @@ static ssize_t voltage_level_store(
 }
 
 static DEVICE_ATTR(voltage_level, S_IRUGO | S_IWUSR, voltage_level_show, voltage_level_store);
-
-static ssize_t vib_enlarge_en_show(struct device *dev, struct device_attribute *attr,
-		char *buf) {
-	struct timed_output_dev *time_cdev;
-	struct qpnp_vib *vib ;
-	time_cdev = (struct timed_output_dev *) dev_get_drvdata(dev);
-	vib = container_of(time_cdev, struct qpnp_vib, timed_dev);
-	return sprintf(buf, "%d", vib->enlarge_vib_on);
-}
-static DEVICE_ATTR(vib_enlarge_en, S_IRUGO | S_IWUSR, vib_enlarge_en_show, NULL);
-
-static ssize_t vib_enlarge_diff_value_show(struct device *dev, struct device_attribute *attr,
-		char *buf) {
-	struct timed_output_dev *time_cdev;
-	struct qpnp_vib *vib ;
-	time_cdev = (struct timed_output_dev *) dev_get_drvdata(dev);
-	vib = container_of(time_cdev, struct qpnp_vib, timed_dev);
-	return sprintf(buf, "%d", vib->enlarge_vib_diff_value);
-}
-static DEVICE_ATTR(vib_enlarge_diff_value, S_IRUGO | S_IWUSR, vib_enlarge_diff_value_show, NULL);
-
 #ifdef CONFIG_PM
 static int qpnp_vibrator_suspend(struct device *dev)
 {
@@ -384,16 +363,6 @@ static int __devinit qpnp_vibrator_probe(struct spmi_device *spmi)
 	rc = device_create_file(vib->timed_dev.dev, &dev_attr_voltage_level);
 	if (rc < 0) {
 		printk(KERN_INFO "[VIB] %s, create sysfs fail: voltage_level\n", __func__);
-	}
-
-	rc = device_create_file(vib->timed_dev.dev, &dev_attr_vib_enlarge_en);
-	if (rc < 0) {
-		printk(KERN_INFO "[VIB] %s, create sysfs fail: vib_enlarge_en\n", __func__);
-	}
-
-	rc = device_create_file(vib->timed_dev.dev, &dev_attr_vib_enlarge_diff_value);
-	if (rc < 0) {
-		printk(KERN_INFO "[VIB] %s, create sysfs fail: vib_enlarge_diff_value\n", __func__);
 	}
 
 #ifdef CONFIG_VIB_TRIGGERS

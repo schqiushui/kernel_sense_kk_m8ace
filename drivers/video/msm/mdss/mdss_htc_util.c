@@ -47,6 +47,7 @@ static char *tmp;
 static struct dsi_cmd_desc debug_cmd = {
 	{DTYPE_DCS_LWRITE, 1, 0, 0, 1, 1}, dcs_cmds
 };
+
 static ssize_t dsi_cmd_write(
 	struct file *file,
 	const char __user *buff,
@@ -56,6 +57,7 @@ static ssize_t dsi_cmd_write(
 	u32 type, value;
 	int cnt, i;
 	struct dcs_cmd_req cmdreq;
+	char rbuf[4];
 
 	if (count >= sizeof(debug_buf) || count < MIN_COUNT)
 		return -EFAULT;
@@ -80,6 +82,8 @@ static ssize_t dsi_cmd_write(
 		debug_cmd.dchdr.dtype = DTYPE_DCS_LWRITE;
 	else if (type == DTYPE_GEN_LWRITE)
 		debug_cmd.dchdr.dtype = DTYPE_GEN_LWRITE;
+	else if (type == DTYPE_DCS_READ)
+		debug_cmd.dchdr.dtype = DTYPE_DCS_READ;
 	else
 		return -EFAULT;
 
@@ -98,19 +102,29 @@ static ssize_t dsi_cmd_write(
 	}
 
 	memset(&cmdreq, 0, sizeof(cmdreq));
-	cmdreq.cmds = &debug_cmd;
-	cmdreq.cmds_cnt = 1;
-	cmdreq.flags = CMD_REQ_COMMIT | CMD_CLK_CTRL;
-	cmdreq.rlen = 0;
-	cmdreq.cb = NULL;
 
-	mdss_dsi_cmdlist_put(ctrl_instance, &cmdreq);
-	PR_DISP_INFO("%s %d\n", __func__, count);
+	if (type == DTYPE_DCS_READ){
+		cmdreq.cmds = &debug_cmd;
+		cmdreq.cmds_cnt = 1;
+		cmdreq.flags = CMD_REQ_COMMIT | CMD_REQ_RX;
+		cmdreq.rlen = 4;
+		cmdreq.rbuf = rbuf;
+		mdss_dsi_read_commit(ctrl_instance, &cmdreq);
+		PR_DISP_INFO("%s: Read 0x%x = 0x%x, count=%d\n", __func__, dcs_cmds[0], rbuf[0], count);
+	} else {
+		cmdreq.cmds = &debug_cmd;
+		cmdreq.cmds_cnt = 1;
+		cmdreq.flags = CMD_REQ_COMMIT | CMD_CLK_CTRL;
+		cmdreq.rlen = 0;
+		cmdreq.cb = NULL;
+		mdss_dsi_cmdlist_put(ctrl_instance, &cmdreq);
+		PR_DISP_INFO("%s %d\n", __func__, count);
+	}
 	return count;
 }
 
 static const struct file_operations dsi_cmd_fops = {
-        .write = dsi_cmd_write,
+	.write = dsi_cmd_write,
 };
 
 void htc_debugfs_init(struct msm_fb_data_type *mfd)

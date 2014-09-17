@@ -459,6 +459,9 @@ obj-$(CONFIG_ARCH_MSM8974) += board-htc-8974.o htc_acoustic_alsa.o
 obj-$(CONFIG_ARCH_DUMMY) += htc_acoustic_alsa.o
 
 obj-$(CONFIG_MACH_MEC_DWG) += board-mec-gpiomux.o board-m8-audio.o
+obj-$(CONFIG_MACH_MEC_DUG) += board-mec-gpiomux.o board-m8-audio.o
+obj-$(CONFIG_MACH_MEC_UL) += board-mec-gpiomux.o board-m8-audio.o
+obj-$(CONFIG_MACH_MEC_TL) += board-mec-gpiomux.o board-m8-audio.o
 
 obj-$(CONFIG_HTC_HEADSET_PMIC) += htc_headset_pmic.o
 obj-$(CONFIG_HTC_HEADSET_GPIO) += htc_headset_gpio.o

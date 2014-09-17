@@ -124,7 +124,7 @@ config s5k6a1gx
 	default n
 	---help---
 		Support for s5k5e sensor driver.
-
+		
 config IMX135
 	bool "Sensor IMX135 (BAYER 12M)"
 	depends on MSMB_CAMERA

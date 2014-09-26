@@ -1239,13 +1239,13 @@ int htc_vreg_dump(int vreg_id, struct seq_file *m, char *vreg_buffer, int curr_l
         return curr_len;
 }
 
-#if defined(CONFIG_MACH_MEC_TL)
+#if defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
 #elif defined(CONFIG_MACH_MEC_WHL)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
-#elif defined(CONFIG_MACH_MEC_UL)
+#elif defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
-#elif defined(CONFIG_MACH_MEC_DUG)
+#elif defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
 #elif defined(CONFIG_MACH_MEC_DWG)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC

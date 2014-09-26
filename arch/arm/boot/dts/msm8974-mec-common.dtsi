@@ -95,7 +95,6 @@
 			mcu,Chip_mode-gpio    = <&msmgpio 53 0x00>;
 			mcu,ALS_goldh  = <0x16>;
 			mcu,ALS_goldl  = <0x8D>;
-			mcu,proximity_debu_info = <1>;
                 };
 
 

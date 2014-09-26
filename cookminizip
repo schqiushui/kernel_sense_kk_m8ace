@@ -9,12 +9,17 @@ kernelDir1="~/Android/kernel_image/htc_m8ace_kernel_sense" #( Example /home/user
 kernelDir2="~/Android/kernel_image/htc_m8ace_kernel_sense" #( Example /home/user/path )
 kernelDir3="Path to kernel 3" #( Example /home/user/path )
 #Toolchain path
-toolchainDir="~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.09" #( Example /home/user/path )
+toolchainDir="~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.08" #( Example /home/user/path )
 #Path where you would like the kernel to be outputed
 exportDir="/home/schqiushui/Android/kernel_image/m8ace_out" #( Example /home/user/Desktop )
 #Change default to what ever you like
+<<<<<<< HEAD
 kernel1name="SchKernel-ElementalX-m8ace-1.06"
 kernel2name="SchKernel-ElementalX-m8ace-1.06"
+=======
+kernel1name="SchKernel-ElementalX-m8ace-1.04"
+kernel2name="SchKernel-ElementalX-m8ace-1.04"
+>>>>>>> parent of 3a4136a... update sources to support mec_dug/tl/ul
 kernel3name="Default-3"
 #Do not edit
 now=$(date +"%m-%d-%Y-%H-%M")
@@ -87,8 +92,8 @@ cp arch/arm/boot/zImage ~/Android/schmkbootimg_tools/m8ace
 
 echo
 echo
-echo " Moved dt.img "
-cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
+#echo " Moved dt.img "
+#cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
 
 echo
 echo

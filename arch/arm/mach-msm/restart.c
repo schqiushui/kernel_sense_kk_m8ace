@@ -58,13 +58,11 @@ extern int get_partition_num_by_name(char *name);
 
 #endif
 
-#if defined(CONFIG_MACH_MEC_TL)
+#if defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
 #elif defined(CONFIG_MACH_MEC_WHL)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
-#elif defined(CONFIG_MACH_MEC_UL)
-#define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
-#elif defined(CONFIG_MACH_MEC_DUG)
+#elif defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC
 #elif defined(CONFIG_MACH_DUMMY)
 #define PN547_I2C_POWEROFF_SEQUENCE_FOR_MEC

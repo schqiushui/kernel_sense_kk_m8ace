@@ -9,12 +9,17 @@ kernelDir1="~/Android/kernel_image/htc_m8ace_kernel_sense" #( Example /home/user
 kernelDir2="~/Android/kernel_image/htc_m8ace_kernel_sense" #( Example /home/user/path )
 kernelDir3="Path to kernel 3" #( Example /home/user/path )
 #Toolchain path
-toolchainDir="~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.09" #( Example /home/user/path )
+toolchainDir="~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.08" #( Example /home/user/path )
 #Path where you would like the kernel to be outputed
-exportDir="/home/schqiushui/Android/kernel_image/m8ace_out" #( Example /home/user/Desktop )
+exportDir="~/Android/kernel_image/htc_m8ace-kernel-sense" #( Example /home/user/Desktop )
 #Change default to what ever you like
+<<<<<<< HEAD
 kernel1name="SchKernel-ElementalX-m8ace-1.06"
 kernel2name="SchKernel-ElementalX-m8ace-1.06"
+=======
+kernel1name="SchKernel-ElementalX-m8ace-v1.04"
+kernel2name="SchKernel-ElementalX-m8ace-v1.04"
+>>>>>>> parent of 3a4136a... update sources to support mec_dug/tl/ul
 kernel3name="Default-3"
 #Do not edit
 now=$(date +"%m-%d-%Y-%H-%M")
@@ -64,7 +69,7 @@ select opt in $OPTIONS; do
 done
 
 #Setup proper path to rid missing gcc warning
-PATH=$PATH:~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.09/bin
+PATH=$PATH:~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.08/bin
 
 #xxx= Your config name
 echo
@@ -80,7 +85,7 @@ make clean
 echo
 echo
 echo " Set to arm at 375, for about 20 to 40 minutes "
-make ARCH=arm CROSS_COMPILE=make ARCH=arm CROSS_COMPILE=~/gcc/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.09/bin/arm-cortex_a15-linux-gnueabihf- -j4
+make ARCH=arm CROSS_COMPILE=$toolchainDir/bin/arm-cortex_a15-linux-gnueabihf- -j$threads
 
 echo
 echo
@@ -116,7 +121,7 @@ cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
 echo
 echo
 echo " Moving modules "
-find -iname *.ko | xargs cp -t ~/Android/kernel_image/htc_m8ace_kernel_sense/system/lib/modules
+find -iname *.ko | xargs cp -t ~/Android/kernel_image/htc_m8ace-kernel-sense/system/lib/modules
 cd ~/Android/schmkbootimg_tools
 
 echo
@@ -127,9 +132,9 @@ echo " Making a boot.img ya'll "
 echo
 echo
 echo " Moved boot.img "
-cp boot.img /home/schqiushui/Android/kernel_image/htc_m8ace_kernel_sense/boot
+cp boot.img ~/Android/kernel_image/htc_m8ace-kernel-sense/boot
 
-cd ~/Android/kernel_image/htc_m8ace_kernel_sense
+cd ~/Android/kernel_image/htc_m8ace-kernel-sense
 
 echo
 echo
@@ -137,7 +142,7 @@ echo " I a make a da zip now, then move that ish to copy out dir "
 zip -r $kernelName-$now.zip *
 mv $kernelName-$now.zip $exportDir
 #cd ..
-cd ~/Android/kernel_image/htc_m8ace_kernel_sense
+cd ~/Android/kernel_image/htc_m8ace-kernel-sense
 #rm -r zip2
 cd $DIR
 echo

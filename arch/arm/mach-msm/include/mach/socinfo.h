@@ -38,6 +38,12 @@
 #define of_board_is_dragonboard()	\
 	of_machine_is_compatible("qcom,dragonboard")
 #define of_board_is_m8()	of_machine_is_compatible("htc,m8")
+#define of_board_is_m8wl()	of_machine_is_compatible("htc,m8wl")
+#define of_board_is_m8whl()	of_machine_is_compatible("htc,m8whl")
+#define of_board_is_m8wlj()	of_machine_is_compatible("htc,m8wlj")
+#define of_board_is_bagoss()	of_machine_is_compatible("htc,bagoss")
+#define of_board_is_glu()	of_machine_is_compatible("htc,glu")
+#define of_board_is_gluwlj()	of_machine_is_compatible("htc,gluwlj")
 #define of_board_is_cdp()	of_machine_is_compatible("qcom,cdp")
 #define of_board_is_mtp()	of_machine_is_compatible("qcom,mtp")
 #define of_board_is_qrd()	of_machine_is_compatible("qcom,qrd")
@@ -491,7 +497,7 @@ static inline int cpu_is_mpq8092(void)
 
 static inline int cpu_is_msm8226(void)
 {
-#ifdef CONFIG_ARCH_DUMMY
+#ifdef CONFIG_ARCH_MSM8226
 	enum msm_cpu cpu = socinfo_get_msm_cpu();
 
 	BUG_ON(cpu == MSM_CPU_UNKNOWN);

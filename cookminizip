@@ -84,12 +84,12 @@ echo
 echo
 echo " Moved zImage "
 cp arch/arm/boot/zImage ~/Android/schmkbootimg_tools/m8ace
-#cp arch/arm/boot/dt.img zip2/kernel/
+cp arch/arm/boot/dt.img zip2/kernel/
 
 echo
 echo
-#echo " Moved dt.img "
-#cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
+echo " Moved dt.img "
+cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
 
 echo
 echo

@@ -106,6 +106,12 @@ enum usb_vdd_value {
 	VDD_VAL_MAX,
 };
 
+enum usb_ext_chg_status {
+	DEFAULT = 1,
+	ACTIVE,
+	INACTIVE,
+};
+
 struct msm_otg_platform_data {
 	int *phy_init_seq;
     int *phy_init_seq_no_uart_switch;
@@ -265,7 +271,7 @@ struct msm_otg {
 	struct class *ext_chg_class;
 	struct device *ext_chg_device;
 	bool ext_chg_opened;
-	bool ext_chg_active;
+	enum usb_ext_chg_status ext_chg_active;
 	struct completion ext_chg_wait;
 	struct qpnp_vadc_chip *vadc_chip;
 	int chg_check_count;

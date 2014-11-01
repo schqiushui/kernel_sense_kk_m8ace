@@ -83,18 +83,18 @@ echo
 echo
 echo
 echo " Moved zImage "
-cp arch/arm/boot/zImage ~/Android/schmkbootimg_tools/m8ace
+cp arch/arm/boot/zImage ~/Android/mkbootimg_tools/m8ace
 
 echo
 echo
 echo " Moved dt.img "
-cp arch/arm/boot/dt.img ~/Android/schmkbootimg_tools/m8ace
+cp arch/arm/boot/dt.img ~/Android/mkbootimg_tools/m8ace
 
 echo
 echo
 echo " Moving modules "
 find -iname *.ko | xargs cp -t ~/Android/kernel_image/htc_m8ace_kernel_sense/system/lib/modules
-cd ~/Android/schmkbootimg_tools
+cd ~/Android/mkbootimg_tools
 
 echo
 echo
